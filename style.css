@@ -1,0 +1,254 @@
+:root {
+  --blue-rgb: 33 150 243;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(prims.svg);
+}
+
+.card {
+  aspect-ratio: 16/9;
+  width: 60vw;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  border-radius: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  letter-spacing: 0.25rem;
+  margin: 0 0 4%;
+}
+
+.loginCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5% 0 5%;
+}
+
+.card .loginCard .avatar {
+  text-align: center;
+  font-size: 5rem;
+  margin-bottom: 5%;
+}
+
+.card form {
+  width: 65%;
+}
+
+.card form h5 {
+  color: gray;
+  position: absolute;
+  z-index: 0;
+  left: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.125rem;
+  transition: 0.3s;
+}
+
+.card form .name,
+.card form .password {
+  border-bottom: 0.125rem solid gray;
+  position: relative;
+  display: grid;
+  grid-template-columns: 7% 93%;
+  padding: 2% 0%;
+}
+
+.card form .name {
+  margin-bottom: 10%;
+}
+
+.card form .password {
+  margin-bottom: 5%;
+}
+
+.card form .focus h5 {
+  top: -0.3125rem;
+  font-size: 0.75rem;
+}
+
+.card form i {
+  transition: 0.4s;
+}
+
+.card form .focus i {
+  color: #3732be;
+}
+
+.input:before,
+.input:after {
+  content: '';
+  position: absolute;
+  bottom: -0.125rem;
+  width: 0%;
+  height: 0.125rem;
+  background-color: #3732be;
+  transition: 0.4s;
+}
+
+.input:before {
+  right: 50%;
+}
+
+.input:after {
+  left: 50%;
+}
+
+.input.focus:before,
+.input.focus:after {
+  width: 50%;
+}
+
+.card form i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card form input {
+  border: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  outline: 0;
+  width: 100%;
+  padding: 3% 0 3% 2%;
+  background: transparent;
+  z-index: 1;
+}
+
+.card form .password i {
+  cursor: pointer;
+}
+
+.card form .btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.card form .btn input[type="button"] {
+  width: fit-content;
+  padding: 2% 20%;
+  font-size: 2rem;
+  border-radius: 2rem;
+  color: white;
+  background-image: linear-gradient(to right, #3732be, #3866d3, #3732be);
+  background-size: 200%;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+.card form .btn input[type="button"]:hover {
+  background-position: right;
+}
+
+.screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border: 3px solid rgb(var(--blue-rgb) / 80%);
+  border-radius: 0 1rem 1rem 0;
+  background-color: rgb(var(--blue-rgb) / 15%);
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+.screen:after,
+.screen:before {
+  content: "";
+  height: 10px;
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  translate: -50% 0%;
+  background-color: white;
+}
+
+.screen:before {
+  width: 15%;
+  top: 0rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.screen:after {
+  width: 25%;
+  bottom: 0rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+@keyframes pan-overlay {
+  from {
+    background-position: 0% 0%;
+  }
+
+  to {
+    background-position: 0% -100%;
+  }
+}
+
+.screen-overlay {
+  background: linear-gradient(
+    rgb(var(--blue-rgb) / 0.15),
+    rgb(var(--blue-rgb) / 0.15) 3px,
+    transparent 3px,
+    transparent 9px
+  );
+  background-size: 100% 9px;
+  height: 100%;
+  width: 100%;
+  animation: pan-overlay 22s infinite linear;
+  position: absolute;
+  z-index: 2;
+  left: 0px;
+  top: 0px;
+}
+
+@keyframes pan-image {
+  0% {
+    background-position: 36% 42%;
+    background-size: 200%;
+  }
+  
+  /* Several other view keyframes are present */
+
+  100% {
+    background-position: 72% 14%;
+    background-size: 300%;
+  }
+}
+
+.screen > .screen-image {
+  background-image: url("https://images.unsplash.com/photo-1515266591878-f93e32bc5937?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2574&q=80");
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  left: 0px;
+  top: 0px;
+  background-size: 300%;
+  background-position: 0% 0%;
+  filter: sepia(100%) hue-rotate(160deg);
+  opacity: 0.6;
+  animation: pan-image 15s linear infinite;
+}
